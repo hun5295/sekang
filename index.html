@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="일민의료재단 세강병원">
+    <meta property="og:image" content="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image6.jpg-MXBMKSxQhP9uDBDmfrJAbVfJrQANCc.jpeg">
+    <meta property="og:description" content="대구 달서구 구마로 220 세강병원">
+    <title>일민의료재단 세강병원</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.5;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 0;
+            background-color: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: linear-gradient(135deg, #0a2463 0%, #1e40af 100%);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .slider-container {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            height: 40vh; /* 화면 높이의 40%로 축소 */
+            background-color: #f1f1f1;
+        }
+        .slider {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+            height: 100%;
+            width: 400%;
+        }
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f1f1f1;
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            margin: 8px 0;
+        }
+        .slider-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #d1d5db;
+            margin: 0 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .slider-dot.active {
+            background-color: #0a2463;
+            transform: scale(1.3);
+        }
+        .info-section {
+            background-color: white;
+            padding: 12px 15px;
+            border-top: 1px solid #eee;
+        }
+        .compact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .hospital-logo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 0 5px;
+        }
+        .hospital-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .hospital-logo-text .name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0a2463;
+        }
+        .hospital-logo-text .eng {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        .hospital-logo-image {
+            width: 40px;
+            height: 40px;
+        }
+        .contact-card {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(145deg, #f0f9ff, #e0f2fe);
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .contact-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 12px;
+            background-color: #dbeafe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e40af;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .contact-info {
+            flex: 1;
+        }
+        .contact-info .name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .contact-info .position {
+            font-size: 0.75rem;
+            color: #4b5563;
+            margin-bottom: 3px;
+        }
+        .contact-info .phone {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1e40af;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+        .info-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0a2463;
+            background-color: rgba(219, 234, 254, 0.4);
+            border-radius: 50%;
+            padding: 5px;
+            flex-shrink: 0;
+        }
+        .info-text {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #1f2937;
+        }
+        .info-section a {
+            color: #1e40af;
+            text-decoration: none;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .info-section a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -1px;
+            left: 0;
+            background-color: #1e40af;
+            transition: width 0.3s;
+        }
+        .info-section a:hover::after {
+            width: 100%;
+        }
+        .contact-link {
+            font-weight: 600;
+            color: #1e40af;
+        }
+        .footer {
+            text-align: center;
+            padding: 12px;
+            background: linear-gradient(to right, #f1f5f9, #f8fafc);
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-top: auto;
+            border-top: 1px solid #e2e8f0;
+        }
+        .swipe-instruction {
+            text-align: center;
+            padding: 8px;
+            background-color: rgba(219, 234, 254, 0.3);
+            font-size: 0.75rem;
+            color: #1e40af;
+            font-weight: 500;
+        }
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(203, 213, 225, 0.7), transparent);
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>일민의료재단 세강병원</h1>
+        </header>
+        
+        <div class="swipe-instruction">
+            ← 좌우로 스와이프하여 이미지를 확인하세요 →
+        </div>
+        
+        <div class="slider-container">
+            <div class="slider">
+                <div class="slide">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image1.jpg-zbaNx2ANOC1JfmawmHsjO2m1ONYUbO.jpeg" alt="세강병원 이미지1">
+                </div>
+                <div class="slide">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image2.jpg-hw8AmCzAqY8CNIi6ajFH0SjaPSovjV.jpeg" alt="세강병원 이미지2">
+                </div>
+                <div class="slide">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image3.jpg-OWm26pnwGLfXx3JP4zKg4mBhNpTAfs.jpeg" alt="세강병원 이미지3">
+                </div>
+                <div class="slide">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image4.jpg-q8hoQx6yZpuw4PR3C5wcPWUMOD8lqh.jpeg" alt="세강병원 이미지4">
+                </div>
+            </div>
+        </div>
+        
+        <div class="slider-nav">
+            <div class="slider-dot active"></div>
+            <div class="slider-dot"></div>
+            <div class="slider-dot"></div>
+            <div class="slider-dot"></div>
+        </div>
+        
+        <div class="info-section">
+            <div class="hospital-logo">
+                <div class="hospital-logo-text">
+                    <span class="name">세강병원</span>
+                    <span class="eng">SEKANG HOSPITAL</span>
+                </div>
+                <div class="hospital-logo-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="40" height="40">
+                        <path d="M50 15 C30 15 15 30 15 50 C15 70 30 85 50 85 C70 85 85 70 85 50 C85 30 70 15 50 15" fill="#0a2463" opacity="0.1"/>
+                        <path d="M65 35 C60 30 55 27.5 50 27.5 C45 27.5 40 30 35 35 C30 40 27.5 45 27.5 50 C27.5 55 30 60 35 65 C40 70 45 72.5 50 72.5 C55 72.5 60 70 65 65 C70 60 72.5 55 72.5 50 C72.5 45 70 40 65 35" fill="#1e40af"/>
+                        <path d="M60 40 C56.5 36.5 53.25 35 50 35 C46.75 35 43.5 36.5 40 40 C36.5 43.5 35 46.75 35 50 C35 53.25 36.5 56.5 40 60 C43.5 63.5 46.75 65 50 65 C53.25 65 56.5 63.5 60 60 C63.5 56.5 65 53.25 65 50 C65 46.75 63.5 43.5 60 40" fill="#ffffff"/>
+                        <path d="M55 45 C53.25 43.25 51.75 42.5 50 42.5 C48.25 42.5 46.75 43.25 45 45 C43.25 46.75 42.5 48.25 42.5 50 C42.5 51.75 43.25 53.25 45 55 C46.75 56.75 48.25 57.5 50 57.5 C51.75 57.5 53.25 56.75 55 55 C56.75 53.25 57.5 51.75 57.5 50 C57.5 48.25 56.75 46.75 55 45" fill="#f59e0b"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-image">
+                    <span>곽</span>
+                </div>
+                <div class="contact-info">
+                    <div class="position">대외협력 이사/본부장</div>
+                    <div class="name"><a href="tel:010-6522-8300">곽봉용</a></div>
+                    <div class="phone"><a href="tel:010-6522-8300">010-6522-8300</a></div>
+                </div>
+            </div>
+            
+            <div class="compact-info">
+                <div class="info-item" style="width: 100%;">
+                    <div class="info-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    </div>
+                    <div class="info-text">의료법인 일민의료재단 세강병원</div>
+                </div>
+                
+                <div class="info-item" style="width: 100%;">
+                    <div class="info-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <div class="info-text">대구 달서구 구마로 220</div>
+                </div>
+                
+                <div class="info-item" style="width: 100%;">
+                    <div class="info-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                    </div>
+                    <div class="info-text">홈페이지: <a href="http://www.skhospital.co.kr" target="_blank">www.skhospital.co.kr</a></div>
+                </div>
+                
+                <div class="info-item" style="width: 100%;">
+                    <div class="info-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                    </div>
+                    <div class="info-text"><a href="https://www.youtube.com/channel/세강병원" target="_blank">세강병원 유튜브</a></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            © 2025 의료법인 일민의료재단 세강병원. All Rights Reserved.
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            let currentIndex = 0;
+            let startX, moveX;
+            let isMoving = false;
+            
+            // 슬라이더 초기화
+            updateSlider();
+            
+            // 터치 이벤트 리스너
+            slider.addEventListener('touchstart', function(e) {
+                startX = e.touches[0].clientX;
+                isMoving = true;
+            });
+            
+            slider.addEventListener('touchmove', function(e) {
+                if (!isMoving) return;
+                moveX = e.touches[0].clientX;
+                const diff = startX - moveX;
+                
+                // 현재 위치에서 약간의 이동 효과 추가
+                const offset = -currentIndex * 100 - (diff / slider.clientWidth) * 100;
+                slider.style.transform = `translateX(${offset}%)`;
+            });
+            
+            slider.addEventListener('touchend', function(e) {
+                if (!isMoving) return;
+                isMoving = false;
+                
+                const diff = startX - moveX;
+                
+                if (diff > 50 && currentIndex < slides.length - 1) {
+                    // 왼쪽으로 스와이프
+                    currentIndex++;
+                } else if (diff < -50 && currentIndex > 0) {
+                    // 오른쪽으로 스와이프
+                    currentIndex--;
+                }
+                
+                updateSlider();
+            });
+            
+            // 도트 클릭 이벤트
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    currentIndex = index;
+                    updateSlider();
+                });
+            });
+            
+            function updateSlider() {
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // 활성 도트 업데이트
+                dots.forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
